@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Program Output</title>
+    <!-- Load Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://mrwallpaper.com/images/high/aesthetic-ocean-with-beach-chairs-y91a6rlzi4xi69ct.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff; /* Text color on top of background image */
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 20px;
+        }
+        
+        main {
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            margin-top: 0;
+        }
+        
+        #tripDetails {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            color: #333; /* Text color on top of background */
+        }
+        
+        @media (max-width: 768px) {
+            #tripDetails {
+                margin-top: 10px;
+            }
+        }
+        
+        #map {
+            height: 400px;
+            width: 100%;
+            
+        }
+       
+        
+
+    </style>
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Python Program Output</h1>
+
+        <form method="post">
+            <div class="form-group">
+                    <label for="destination">Destination:</label>
+                    <input type="text" class="form-control" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="select month">select month:</label>
+                    <input type="text" class="form-control" id="select_month" required>
+      </div>
+            <div class="form-group">
+                <label for="monthInput">Enter month no.:</label>
+                <input type="number" class="form-control" id="monthInput" name="month" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- Output will be displayed here -->
+        <div class="mt-4">
+            {% if output %}
+            <h2>Mean Squared Error: {{ mse }}</h2>
+            <h3>Predictions:</h3>
+            <pre>{{ predictions }}</pre>
+            <p>Note: the last value in the array is the value of the target month.</p>
+            <!-- Display the graph here -->
+            <img src="{{ graph_path }}" alt="Graph" class="img-fluid">
+            {% endif %}
+        </div>
+    </div>
+    <!-- Add a div for the map -->
+    <div id="map" style="height: 400px; width: 100%;"></div>
+    <!-- Load Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVvI60w20Vez1Fvn1zfe939FpkuOq27MI&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 15.2993, lng: 74.1240},
+                zoom: 10
+            });
+
+            // Add autocomplete functionality to the destination input
+            var input = document.getElementById('destination');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            // Bias the autocomplete results towards current map's viewport
+            autocomplete.bindTo('bounds', map);
+        }
+    </script>
+</body>
+</html>
